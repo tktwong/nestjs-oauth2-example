@@ -94,9 +94,16 @@ $ curl http://localhost:3000/oauth/token \
 	-H "Authorization: Basic Y29uZmlkZW50aWFsQXBwbGljYXRpb246dG9wU2VjcmV0" \
 	-H "Content-Type: application/x-www-form-urlencoded"
 
+
+$ curl http://localhost:3000/oauth/token \
+	-d "grant_type=client_credentials" \
+	-d "client_id=userClient2" \
+	-d "client_secret=secret123" \
+	-H "Content-Type: application/x-www-form-urlencoded"
+
 # Response
 {
-  "accessToken":"1c330415ac5db35baf502b5e8e30a9db5594ba66","accessTokenExpiresAt":"2020-06-16T04:24:10.240Z","client":{"id":"confidentialApplication"},"user":{}
+  "accessToken":"1c330415ac5db35baf502b5e8e30a9db5594ba66","accessTokenExpiresAt":"2020-06-16T04:24:10.240Z","client":{"id":"confidentialApplication"},"user":{"username":"terry"}
 }⏎
 
 ```

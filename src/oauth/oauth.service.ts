@@ -10,7 +10,15 @@ export class OAuthService
         id: 'userClient', // Needed by refresh_token grant as there is a bug at line 103 in https://github.com/oauthjs/node-oauth2-server/blob/v3.0.1/lib/grant-types/refresh-token-grant-type.js (used client.id instead of client.clientId)
         clientId: 'userClient',
         clientSecret: 'secret123',
-        grants: ['password', 'refresh_token'],
+        grants: ['password', 'refresh_token', 'client_credentials'],
+        redirectUris: ['http://localhost:3000'],
+        userId: 'terry',
+      },
+      {
+        id: 'userClient2', // Needed by refresh_token grant as there is a bug at line 103 in https://github.com/oauthjs/node-oauth2-server/blob/v3.0.1/lib/grant-types/refresh-token-grant-type.js (used client.id instead of client.clientId)
+        clientId: 'userClient2',
+        clientSecret: 'secret123',
+        grants: ['password', 'refresh_token', 'client_credentials'],
         redirectUris: ['http://localhost:3000'],
         userId: 'terry',
       },
