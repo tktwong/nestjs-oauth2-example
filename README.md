@@ -101,6 +101,14 @@ $ curl http://localhost:3000/oauth/token \
 	-d "client_secret=secret123" \
 	-H "Content-Type: application/x-www-form-urlencoded"
 
+$ node
+$ Buffer.from("userClient2:secret123").toString("base64")
+
+$ curl http://localhost:3000/oauth/token \
+	-d "grant_type=client_credentials" \
+	-H "Authorization: Basic dXNlckNsaWVudDI6c2VjcmV0MTIz" \
+	-H "Content-Type: application/x-www-form-urlencoded"
+
 # Response
 {
   "accessToken":"1c330415ac5db35baf502b5e8e30a9db5594ba66","accessTokenExpiresAt":"2020-06-16T04:24:10.240Z","client":{"id":"confidentialApplication"},"user":{"username":"terry"}
