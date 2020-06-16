@@ -7,9 +7,9 @@ export class OAuthService
   private memCache = {
     userClients: [
       {
-        id: 'application', // Needed by refresh_token grant as there is a bug at line 103 in https://github.com/oauthjs/node-oauth2-server/blob/v3.0.1/lib/grant-types/refresh-token-grant-type.js (used client.id instead of client.clientId)
-        clientId: 'application',
-        clientSecret: 'secret',
+        id: 'userClient', // Needed by refresh_token grant as there is a bug at line 103 in https://github.com/oauthjs/node-oauth2-server/blob/v3.0.1/lib/grant-types/refresh-token-grant-type.js (used client.id instead of client.clientId)
+        clientId: 'userClient',
+        clientSecret: 'secret123',
         grants: ['password', 'refresh_token'],
         redirectUris: ['http://localhost:3000'],
         userId: 'terry',
@@ -58,12 +58,6 @@ export class OAuthService
       (client: any) =>
         client.clientId === clientId && client.clientSecret === clientSecret,
     );
-    // console.log(
-    //   this.config.clients,
-    //   this.config.confidentialClients,
-    //   clients[0],
-    //   confidentialClients[0],
-    // );
     return clients[0] || confidentialClients[0];
   };
 
@@ -96,7 +90,7 @@ export class OAuthService
   getUserFromClient = (
     client: OAuth2Server.Client,
   ): Promise<OAuth2Server.User | OAuth2Server.Falsey> => {
-    console.log(client, this.memCache.appClients);
+    // console.log(client, this.memCache.appClients);
     const clients = this.memCache.appClients.filter(savedClient => {
       savedClient.clientId === client.clientId &&
         savedClient.clientSecret === client.clientSecret;
@@ -107,7 +101,7 @@ export class OAuthService
     );
 
     return new Promise((resolve, _reject) =>
-      resolve({ username: matchedUser && matchedUser.username }),
+      resolve({ username: matchedUser && matchedUser[0].username }),
     );
   };
 
@@ -122,15 +116,13 @@ export class OAuthService
   };
 
   revokeToken = (token: any) => {
-    this.memCache.tokens = this.memCache.tokens.filter((savedToken: any) => {
-      return savedToken.refreshToken !== token.refreshToken;
-    });
+    this.memCache.tokens = this.memCache.tokens.filter(
+      savedToken => savedToken.refreshToken !== token.refreshToken,
+    );
 
-    const revokedTokensFound = this.memCache.tokens.filter(function(
-      savedToken,
-    ) {
-      return savedToken.refreshToken === token.refreshToken;
-    });
+    const revokedTokensFound = this.memCache.tokens.filter(
+      savedToken => savedToken.refreshToken === token.refreshToken,
+    );
 
     return !revokedTokensFound.length;
   };

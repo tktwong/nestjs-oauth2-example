@@ -64,7 +64,7 @@ $ curl http://localhost:3000/oauth/token \
 	-d "grant_type=password" \
 	-d "username=terry" \
 	-d "password=password" \
-	-H "Authorization: Basic YXBwbGljYXRpb246c2VjcmV0" \
+	-H "Authorization: Basic dXNlckNsaWVudDpzZWNyZXQxMjM" \
 	-H "Content-Type: application/x-www-form-urlencoded"
 
 # Response
@@ -74,8 +74,8 @@ $ curl http://localhost:3000/oauth/token \
 
 $ curl http://localhost:3000/oauth/token \
 	-d "grant_type=refresh_token" \
-	-d "refresh_token=893af3beb89330b63208b54f46602b30035ea4bc" \
-	-H "Authorization: Basic YXBwbGljYXRpb246c2VjcmV0" \
+	-d "refresh_token=480b7ae8c865fcd59cdd31494d34b5224b70eb1b" \
+	-H "Authorization: Basic dXNlckNsaWVudDpzZWNyZXQxMjM" \
 	-H "Content-Type: application/x-www-form-urlencoded"
 
 # Response
