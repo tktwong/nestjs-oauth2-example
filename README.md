@@ -103,6 +103,8 @@ $ curl http://localhost:3000/oauth/token \
 
 $ node
 $ Buffer.from("userClient2:secret123").toString("base64")
+or
+$ echo -n "userClient2:secret123" | openssl base64
 
 $ curl http://localhost:3000/oauth/token \
 	-d "grant_type=client_credentials" \
